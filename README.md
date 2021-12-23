@@ -1,5 +1,5 @@
 ## Overview
-<img src="figures/N625.PNG" width="250" title="N3125" alt="N3125" align="right" vspace = "50">
+<img src="figures/N3125zoom.PNG" width="250" title="N3125" alt="N3125" align="right" vspace = "50">
 
 Generating evenly distributed points on the surface of a hypersphere of radius 1. 
 
