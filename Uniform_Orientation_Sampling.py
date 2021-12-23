@@ -58,13 +58,3 @@ class UniformOrientationSampling:
 
         return embedding
 
-
-UOS = UniformOrientationSampling(dimensions=10, pop_size=500, iterations=1500, approach='KNN_repulsion')
-
-embedding = UOS.run_optimizer()
-
-plotter = NDScatter(embedding, UOS, make_raster=True)
-plotter.ndscatter()
-
-KNNDD = KNNDistanceDistribution(embedding, UOS, show_naive=True)
-KNNDD.get_KNNDD()

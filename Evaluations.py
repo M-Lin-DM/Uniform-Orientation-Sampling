@@ -67,7 +67,7 @@ class KNNDistanceDistribution:
     Inspect the distance distribution of the K-nearest neighbors, aggregated over all points. Compare it to the
     same distribution when taking a naive approach to orientation sampling.
     """
-    def __init__(self, data, UOS, save_path_naive=None, save_path_histogram=None):
+    def __init__(self, data, UOS, save_path_naive=None, save_path_histogram=None, show_hist=True):
         self.data = data
         self.dimensions = UOS.dimensions
         self.pop_size = UOS.pop_size
@@ -76,6 +76,7 @@ class KNNDistanceDistribution:
         self.save_path_naive = save_path_naive
         self.save_path_histogram = save_path_histogram
         self.UOS = UOS
+        self.show_hist = show_hist
 
     def generate_naive_sample(self):
         return normalize_rows(np.random.rand(self.pop_size, self.dimensions) - 0.5)
@@ -115,10 +116,10 @@ class KNNDistanceDistribution:
             axs[1].set_xlabel('distance from point to neighbor (rad)', fontsize=10)
             axs[1].set_ylabel('probability density', fontsize=10)
             plt.tick_params('x', labelsize=9)
-
-
             plt.xlim(0, 0.8)
-            # plt.show()  # show distributions
+
+            if self.show_hist:
+                plt.show()  # show distributions
 
             if self.save_path_histogram is not None:
                 fig.savefig(self.save_path_histogram + 'hist_' + self.approach + '_' + str(self.dimensions) + 'D_N' + str(self.pop_size) + '_K_include' + str(self.K_include) + '.png', transparent=False, dpi='figure', bbox_inches=None)
