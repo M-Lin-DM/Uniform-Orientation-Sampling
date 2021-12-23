@@ -23,7 +23,7 @@ Importantly, the spike is not present when using the projection-based approach s
 <img src="figures/dimscan.PNG" width="1000" title="Comparison over Number of vectors" alt="comparison over N" vspace = "50">
 
 ## Usage
-See `demo.py` and docstrings in python files.
+See `demo.py`, `plots.py`, and docstrings in python files.
 
 ## Python Dependencies
 - numpy
