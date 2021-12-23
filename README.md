@@ -3,4 +3,4 @@ Generating evenly distributed points on the surface of a hypersphere of radius 1
 
 <!-- ![](/figures/comparison_over_N.png) -->
 
-<img src="/figures/comparison_over_N.png" width="600" title="Comarison over Number of vectors" alt="comparison" vspace = "50">
+<img src="figures/comparison_over_N.PNG" width="600" title="Comarison over Number of vectors" alt="comparison" vspace = "50">
