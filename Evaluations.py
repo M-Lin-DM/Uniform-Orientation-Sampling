@@ -1,6 +1,6 @@
 import numpy as np
 from utils import normalize_rows
-from sklearn.neighbors import NearestNeighbors, KDTree, DistanceMetric
+from sklearn.neighbors import NearestNeighbors
 import matplotlib.pyplot as plt
 import plotly.graph_objs as go
 from Plotting_tools import NDScatter
@@ -66,9 +66,26 @@ class KNNDistanceDistribution:
     """
     Inspect the distance distribution of the K-nearest neighbors, aggregated over all points. Compare it to the
     same distribution when taking a naive approach to orientation sampling.
+
+        Parameters
+    ------------
+    emb: ndarray
+            Each row should represent a vector in emb.shape[1]-dimensional space
+
+    UOS: UniformOrientationSampling object
+            UniformOrientationSampling object. See Uniform_Orientation_Sampling.py
+
+    save_path_naive:  str
+            where to save plot of naive, projection-based embedding
+
+    save_path_histogram: str
+            where to save plot of nearest-neighbors distance distribution
+
+    show_hist: bool
+            whether to plot histograms
     """
-    def __init__(self, data, UOS, save_path_naive=None, save_path_histogram=None, show_hist=True):
-        self.data = data
+    def __init__(self, emb, UOS, save_path_naive=None, save_path_histogram=None, show_hist=True):
+        self.emb = emb
         self.dimensions = UOS.dimensions
         self.pop_size = UOS.pop_size
         self.approach = UOS.approach
@@ -95,7 +112,7 @@ class KNNDistanceDistribution:
             pass
         else:
             # get KNN distances for our algorithms embedding:
-            theta = angle_distance_matrix(self.data)
+            theta = angle_distance_matrix(self.emb)
             distances, indices = KNNCustomDistanceMetric(theta, self.K_include)
             edges = np.linspace(0, max_angle, int(len(distances.flatten())/points_per_bin), endpoint=True)  # edges in distance from center point
 
@@ -128,6 +145,6 @@ class KNNDistanceDistribution:
     def save_naive_emb(self):
         naive_emb = self.generate_naive_sample()
         if self.save_path_naive is not None:
-            if self.data.shape[1] == 3:
+            if self.emb.shape[1] == 3:
                 plotter = NDScatter(naive_emb, self.UOS, make_raster=False, save_path=self.save_path_naive)
                 plotter.scatter3D_mpl()  # saves plot to save_path

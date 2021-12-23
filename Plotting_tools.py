@@ -42,6 +42,23 @@ def add_KNN_network(ax, emb, plot_cap):
 
 
 class NDScatter:
+    """
+    Class for plotting result of UOS algorithm
+
+        Parameters
+    ------------
+    emb: ndarray
+            Each row should represent a vector in emb.shape[1]-dimensional space
+
+    UOS: UniformOrientationSampling object
+            UniformOrientationSampling object. See Uniform_Orientation_Sampling.py
+
+    make_raster:  bool
+            whether to plot matrix containing embedding when dimensions>3
+
+    save_path: str
+            where to save plots
+    """
 
     def __init__(self, emb, UOS, make_raster=False, save_path=None):
         self.emb = emb
