@@ -16,11 +16,12 @@ One obvious, projection-based, approach (Fig left) leads to an inefficient sampl
 <img src="figures/comparison_over_N.PNG" width="1000" title="Comparison over Number of vectors" alt="comparison over N" vspace = "50">
 
 ## Demonstrating it works in higher dimensions
-I developed a signature of the point distribution that suggests the UOS algorithm finds a evenly-spaced set of points in several dimensions higher than 3. The code computing this signature can be found in `Evaluations.py`. See `demo.py` for usage. The signature is found by looking at the distribution of distances from a point to its nearest neighbors. In the 3D case, points typically arrange in to an imperfect hexagonal lattice. This causes there to be a sharp spike in probability at a certain distance, namely, the distance of the first nearest neighbors. I found that this spike was present in dimensions up to 10, but I have not tested beyond that. 
+I developed a signature of the point distribution that suggests the UOS algorithm finds a evenly-spaced set of points in several dimensions higher than 3. The code computing this signature can be found in `Evaluations.py`. See `demo.py` for usage. The signature is found by looking at the distribution of distances (measured in angular separation (radians)) from a point to its nearest neighbors. In the 3D case, points typically arrange in to an imperfect hexagonal lattice. This causes there to be a sharp spike in probability at a certain distance, namely, the distance of the first nearest neighbors. I found that this spike was present in dimensions up to 10, but I have not tested beyond that. 
 
 Importantly, the spike is not present when using the projection-based approach shown in the figures above. The black distributions below show the nearest-neighbors distance distribution for embeddings using this approach, and the blue distributions correspond to UOS embeddings. In the sample+project embeddings, two points can end up extremely close, and this leads to low inter-point distance having significant probability.
 
 <img src="figures/dimscan.PNG" width="1000" title="Comparison over Number of vectors" alt="comparison over N" vspace = "50">
+*Fig. Nearest-neighbor distance distribution of `pop_size=400` points in 2, 3, 4, and 5D space. all x axes are shown with the same limits, which happens to truncate the distribution in 4 and 5D. Distances to nearest neighbors are measured in radians (computed using the dot product between a point and each of its nearest neighbors).*
 
 ## Usage
 See `demo.py`, `plots.py`, and docstrings in python files.
